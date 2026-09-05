@@ -1,0 +1,66 @@
+.home {
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+.home__headline {
+  font-size: 40px;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  max-width: 480px;
+}
+
+.home__search {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  background: var(--paper);
+}
+
+.home__search:focus {
+  border-color: var(--ink);
+}
+
+.home__filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.home__cuisines {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.home__chip {
+  border: 1px solid var(--line);
+  background: transparent;
+  border-radius: 999px;
+  padding: 7px 16px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.home__chip--active {
+  background: var(--marigold);
+  border-color: var(--marigold);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.home__sort {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 8px 10px;
+  font-size: 13.5px;
+  background: var(--paper);
+  color: var(--ink-soft);
+}
