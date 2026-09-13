@@ -6,6 +6,9 @@ spring:
     name: eureka-server
 
 eureka:
+  instance:
+    hostname: eureka-fn2q.onrender.com
+
   client:
     register-with-eureka: false
     fetch-registry: false
