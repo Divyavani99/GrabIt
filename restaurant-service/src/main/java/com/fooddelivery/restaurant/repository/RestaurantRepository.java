@@ -19,13 +19,13 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, UUID> {
     List<Restaurant> findWithinBoundingBox(@Param("minLat") double minLat, @Param("maxLat") double maxLat,
                                             @Param("minLng") double minLng, @Param("maxLng") double maxLng);
 
-    @Query("""
-           SELECT r FROM Restaurant r
-           WHERE (:query IS NULL OR LOWER(r.name) LIKE LOWER(CONCAT('%', :query, '%')))
-             AND (:cuisine IS NULL OR LOWER(r.cuisine) = LOWER(:cuisine))
-             AND (:minRating IS NULL OR r.rating >= :minRating)
-           """)
-    List<Restaurant> search(@Param("query") String query,
-                             @Param("cuisine") String cuisine,
-                             @Param("minRating") Double minRating);
+@Query("""
+       SELECT r FROM Restaurant r
+       WHERE (CAST(:query AS string) IS NULL OR LOWER(r.name) LIKE LOWER(CONCAT('%', CAST(:query AS string), '%')))
+         AND (CAST(:cuisine AS string) IS NULL OR LOWER(r.cuisine) = LOWER(CAST(:cuisine AS string)))
+         AND (CAST(:minRating AS double) IS NULL OR r.rating >= CAST(:minRating AS double))
+       """)
+List<Restaurant> search(@Param("query") String query,
+                         @Param("cuisine") String cuisine,
+                         @Param("minRating") Double minRating);
 }
