@@ -8,10 +8,15 @@ spring:
 eureka:
   instance:
     hostname: eureka-fn2q.onrender.com
+    non-secure-port: ${PORT:8761}
+    secure-port-enabled: true
+    secure-port: 443
 
   client:
     register-with-eureka: false
     fetch-registry: false
+    service-url:
+      defaultZone: https://eureka-fn2q.onrender.com/eureka/
 
   server:
     enable-self-preservation: false
