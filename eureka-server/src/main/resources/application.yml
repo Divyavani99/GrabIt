@@ -12,8 +12,6 @@ eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
-    service-url:
-      defaultZone: https://eureka-fn2q.onrender.com/eureka/
 
   server:
     enable-self-preservation: false
