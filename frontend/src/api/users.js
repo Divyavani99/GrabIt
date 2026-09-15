@@ -1,12 +1,21 @@
 import { request } from "./client";
 
-export const registerUser = ({ name, email, phone, password }) =>
-  request("/v1/users/register", { method: "POST", body: { name, email, phone, password } });
+export const registerUser = (body) =>
+  request("/v1/users/register", {
+    method: "POST",
+    body,
+  });
 
-export const getProfile = (userId) => request(`/v1/users/${userId}`);
+export const getProfile = (userId, token) =>
+  request(`/v1/users/${userId}`, {
+    userId,
+    token,
+  });
 
-export const addAddress = (userId, { street, city, lat, lng, label }) =>
+export const addAddress = (userId, token, body) =>
   request(`/v1/users/${userId}/addresses`, {
     method: "POST",
-    body: { street, city, lat, lng, label },
+    userId,
+    token,
+    body,
   });
