@@ -7,15 +7,10 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.UUID;
 
-@Component
-public class RestaurantClient {
-
-    private final WebClient webClient;
-
-    public RestaurantClient(WebClient.Builder webClientBuilder,
-                             @Value("${services.restaurant-service.url}") String restaurantServiceUrl) {
-        this.webClient = webClientBuilder.baseUrl(restaurantServiceUrl).build();
-    }
+@Component public class RestaurantClient { 
+    private final WebClient webClient; 
+    public RestaurantClient( WebClient.Builder webClientBuilder, @Value("${services.restaurant-service.url}") String restaurantServiceUrl) 
+    { this.webClient = webClientBuilder .baseUrl(restaurantServiceUrl) .build(); }
 
     /** Fetches a single menu item's live price/availability from restaurant-service. */
     public FoodMenuDto getMenuItem(UUID restaurantId, UUID itemId) {
