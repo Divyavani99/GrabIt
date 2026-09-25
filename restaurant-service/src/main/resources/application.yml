@@ -1,3 +1,4 @@
+```yaml
 server:
   port: ${PORT:8082}
 
@@ -24,24 +25,14 @@ spring:
     caffeine:
       spec: maximumSize=1000,expireAfterWrite=60s
 
-eureka:
-  client:
-    service-url:
-      defaultZone: ${EUREKA_URL}
-    register-with-eureka: true
-    fetch-registry: true
-
-  instance:
-    prefer-ip-address: true
-    lease-renewal-interval-in-seconds: 30
-    lease-expiration-duration-in-seconds: 180
-
 management:
   endpoints:
     web:
       exposure:
         include: health
+
   endpoint:
     health:
       probes:
         enabled: true
+```
