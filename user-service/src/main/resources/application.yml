@@ -1,3 +1,4 @@
+
 server:
   port: ${PORT:8081}
 
@@ -41,13 +42,6 @@ spring:
         spring.json.value.default.type: com.fooddelivery.user.event.OrderPlacedEvent
         spring.json.use.type.headers: false
 
-eureka:
-  client:
-    service-url:
-      defaultZone: ${EUREKA_URL}
-  instance:
-    prefer-ip-address: true
-
 jwt:
   secret: "change-this-super-secret-key-min-32-chars-long!!"
   expiration-ms: 86400000
@@ -61,3 +55,4 @@ management:
 logging:
   level:
     org.springframework.security: DEBUG
+
