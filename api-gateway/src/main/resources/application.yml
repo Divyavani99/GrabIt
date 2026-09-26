@@ -14,7 +14,7 @@ spring:
         # USER SERVICE
         # =========================
         - id: user-service
-          uri: https://user-service.onrender.com
+          uri: https://grabit-1-k4df.onrender.com
           order: 0
           predicates:
             - Path=/v1/users/**
@@ -32,7 +32,7 @@ spring:
         # ORDER SERVICE - CART
         # =========================
         - id: order-service-cart
-          uri: https://YOUR-ORDER-SERVICE.onrender.com
+          uri: https://order-service-mkrk.onrender.com
           order: 0
           predicates:
             - Path=/v1/cart/**
@@ -41,7 +41,7 @@ spring:
         # TRACKING SERVICE - WEBSOCKET
         # =========================
         - id: tracking-service-ws
-          uri: https://YOUR-TRACKING-SERVICE.onrender.com
+          uri: https://tracking-service-7tn3.onrender.com
           order: -1
           predicates:
             - Path=/v1/orders/*/track
@@ -50,7 +50,7 @@ spring:
         # ORDER SERVICE - ORDERS
         # =========================
         - id: order-service-orders
-          uri: https://YOUR-ORDER-SERVICE.onrender.com
+          uri: https://order-service-mkrk.onrender.com
           order: 0
           predicates:
             - Path=/v1/orders/**
@@ -59,7 +59,7 @@ spring:
         # TRACKING SERVICE
         # =========================
         - id: tracking-service
-          uri: https://YOUR-TRACKING-SERVICE.onrender.com
+          uri: https://tracking-service-7tn3.onrender.com
           order: 0
           predicates:
             - Path=/v1/delivery/**
@@ -68,7 +68,7 @@ spring:
         # DELIVERY SERVICE
         # =========================
         - id: delivery-service
-          uri: https://YOUR-DELIVERY-SERVICE.onrender.com
+          uri: https://delivery-service-6z2w.onrender.com
           order: 0
           predicates:
             - Path=/v1/delivery-partners/**
@@ -77,7 +77,7 @@ spring:
         # PAYMENT SERVICE
         # =========================
         - id: payment-service
-          uri: https://YOUR-PAYMENT-SERVICE.onrender.com
+          uri: https://payment-service-6xxx.onrender.com
           order: 0
           predicates:
             - Path=/v1/payments/**
