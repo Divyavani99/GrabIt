@@ -1,70 +1,96 @@
+
 server:
-  port: 8080
+  port: ${PORT:8080}
 
 spring:
   application:
     name: api-gateway
+
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
       routes:
+
+        # =========================
+        # USER SERVICE
+        # =========================
         - id: user-service
-          uri: lb://user-service
+          uri: ${USER_SERVICE_URL}
           order: 0
           predicates:
             - Path=/v1/users/**
 
+        # =========================
+        # RESTAURANT SERVICE
+        # =========================
         - id: restaurant-service
-          uri: lb://restaurant-service
+          uri: ${RESTAURANT_SERVICE_URL}
           order: 0
           predicates:
             - Path=/v1/restaurants/**
 
+        # =========================
+        # ORDER SERVICE - CART
+        # =========================
         - id: order-service-cart
-          uri: lb://order-service
+          uri: ${ORDER_SERVICE_URL}
           order: 0
           predicates:
             - Path=/v1/cart/**
 
-        # Must be evaluated before order-service-orders below: the WebSocket path
-        # /v1/orders/{orderId}/track also matches /v1/orders/**, but belongs to
-        # tracking-service, not order-service. Lower "order" = higher priority.
+        # =========================
+        # TRACKING SERVICE - WEBSOCKET
+        # Must come before /v1/orders/**
+        # =========================
         - id: tracking-service-ws
-          uri: lb://tracking-service
+          uri: ${TRACKING_SERVICE_URL}
           order: -1
           predicates:
             - Path=/v1/orders/*/track
 
+        # =========================
+        # ORDER SERVICE - ORDERS
+        # =========================
         - id: order-service-orders
-          uri: lb://order-service
+          uri: ${ORDER_SERVICE_URL}
           order: 0
           predicates:
             - Path=/v1/orders/**
 
+        # =========================
+        # TRACKING SERVICE
+        # =========================
         - id: tracking-service
-          uri: lb://tracking-service
+          uri: ${TRACKING_SERVICE_URL}
           order: 0
           predicates:
             - Path=/v1/delivery/**
 
+        # =========================
+        # DELIVERY SERVICE
+        # =========================
         - id: delivery-service
-          uri: lb://delivery-service
+          uri: ${DELIVERY_SERVICE_URL}
           order: 0
           predicates:
             - Path=/v1/delivery-partners/**
 
+        # =========================
+        # PAYMENT SERVICE
+        # =========================
         - id: payment-service
-          uri: lb://payment-service
+          uri: ${PAYMENT_SERVICE_URL}
           order: 0
           predicates:
             - Path=/v1/payments/**
 
-eureka:
-  client:
-    service-url:
-      defaultZone: ${EUREKA_URL}
-  instance:
-    prefer-ip-address: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
